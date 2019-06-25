@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/edit_option"
+            android:icon="@drawable/edit_icon"
+            android:title="@string/edit_option" />
+        <item
+            android:id="@+id/bag_location"
+            android:icon="@drawable/location_icon"
+            android:title="@string/bag_location" />
+        <item
+            android:id="@+id/open_bag"
+            android:icon="@drawable/bag_icon"
+            android:title="@string/open_bag" />
+    </group>
+
+</menu>

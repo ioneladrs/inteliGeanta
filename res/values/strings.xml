@@ -1,0 +1,28 @@
+<resources>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Setari</string>
+
+    <string name="edit_option">Editeaza</string>
+    <string name="bag_location">Localizeaza geanta</string>
+    <string name="open_bag">Deschide geanta</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="surname_name">Nume Prenume</string>
+
+    <string name="app_name">inteliGeanta</string>
+    <string name="bluetooth_on_off">Stabilire conexiune</string>
+    <string name="bluetooth_off">Bluetooth dezactivat</string>
+    <string name="start_search">Cauta dispozitive</string>
+    <string name="bluetooth_not_supported">Bluetooth nu este suportat de dispozitiv</string>
+    <string name="device_name">Nume dispozitiv</string>
+    <string name="stop_search">Opreste cautarea</string>
+    <string name="device_not_found">Nu s-au gasit dispozitive</string>
+    <string name="Disconnect">Deconecteaza</string>
+    <string name="connect">Conecteaza</string>
+    <string name="bluetooth_icon">Bluetooth Icon</string>
+</resources>
