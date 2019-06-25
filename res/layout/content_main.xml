@@ -9,28 +9,29 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <Switch
+        android:id="@+id/control_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        android:text="@string/bluetooth_on_off"
+        android:textSize="22sp"
+        android:textStyle="italic" />
+
     <RelativeLayout
         android:id="@+id/frame_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:visibility="visible">
 
-        <Switch
-            android:id="@+id/control_bluetooth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="10dp"
-            android:padding="8dp"
-            android:text="@string/bluetooth_on_off"
-            android:textSize="22sp"
-            android:textStyle="italic" />
-
-        <TextView
+         <TextView
             android:id="@+id/tv_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:padding="8dp"
             android:text="@string/bluetooth_off"
             android:textSize="24sp"
@@ -91,6 +92,20 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"></ListView>
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/CommunicationFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/bt_disconnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/BtDisconnect"/>
+    </RelativeLayout>
 
 
 </LinearLayout>

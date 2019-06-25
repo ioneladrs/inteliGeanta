@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity
     public static final int BT_SEARCH = 22;
     public static final int REQUEST_CODE_LOC = 1;
 
-    private RelativeLayout frameMessage;
+    private RelativeLayout frameMessage, communicationFrame;
     private LinearLayout frameControl;
 
-    private Button btnEnableSearch;
+    private Button btnEnableSearch, BtDisconnect;
     private Switch controlBluetooth;
     private ProgressBar searchProgress;
     private ListView bluetoothDevices;
@@ -87,17 +87,20 @@ public class MainActivity extends AppCompatActivity
 
         frameMessage = findViewById(R.id.frame_message);
         frameControl = findViewById(R.id.frame_control);
+        communicationFrame = findViewById(R.id.CommunicationFrame);
 
         searchProgress = findViewById(R.id.search_progress);
         btnEnableSearch = findViewById(R.id.btn_enable_search);
         controlBluetooth = findViewById(R.id.control_bluetooth);
         bluetoothDevices = findViewById(R.id.bluetooth_devices);
+        BtDisconnect = findViewById(R.id.bt_disconnect);
         //notFound = findViewById(R.id.not_found);
 
 
         controlBluetooth.setOnCheckedChangeListener(this);
         btnEnableSearch.setOnClickListener(this);
         bluetoothDevices.setOnItemClickListener(this);
+        BtDisconnect.setOnClickListener(this);
 
         bluetoothDevicess = new ArrayList<>();
         IntentFilter filter = new IntentFilter();
@@ -151,12 +154,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -178,17 +177,21 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
     }
-
     @Override
     public void onClick(View v) {
         if (v.equals(btnEnableSearch)) {
             enableSearch();
+        } else if (v.equals(BtDisconnect)){
+            if(connectedThread != null) {
+                connectedThread.cancel();
+            }
+            if(connectThread != null){
+                connectThread.cancel();
+            }
+            showFrameControl();
         }
-
     }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (parent.equals(bluetoothDevicess)) {
@@ -199,7 +202,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -233,13 +235,19 @@ public class MainActivity extends AppCompatActivity
     private void showFrameMessage() {
         frameMessage.setVisibility(View.VISIBLE);
         frameControl.setVisibility(View.GONE);
+        communicationFrame.setVisibility(View.GONE);
     }
 
     private void showFrameControl() {
         frameMessage.setVisibility(View.GONE);
         frameControl.setVisibility(View.VISIBLE);
+        communicationFrame.setVisibility(View.GONE);
     }
-
+    private void showFrameCommunication() {
+        frameMessage.setVisibility(View.GONE);
+        frameControl.setVisibility(View.GONE);
+        communicationFrame.setVisibility(View.VISIBLE);
+    }
     private void enableBt(boolean flag) {
         if (flag) {
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -365,10 +373,11 @@ public class MainActivity extends AppCompatActivity
             if (success) {
                 connectedThread = new ConnectedThread(bluetoothSocket);
                 connectedThread.start();
+                showFrameCommunication();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
+                        showFrameCommunication();
                     }
                 });
             }

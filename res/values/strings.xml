@@ -25,4 +25,5 @@
     <string name="Disconnect">Deconecteaza</string>
     <string name="connect">Conecteaza</string>
     <string name="bluetooth_icon">Bluetooth Icon</string>
+    <string name="BtDisconnect">Deconectare</string>
 </resources>
